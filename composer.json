@@ -1,6 +1,6 @@
 {
   "name": "serginhold/bitrix-boolean-property",
-  "description": "Boolean property for module \"iblock\"",
+  "description": "Свойство Да/Нет для модуля Информационные блоки (1С-Битрикс)",
   "keywords": ["bitrix", "module", "iblock", "property", "boolean"],
   "type": "bitrix-module",
   "license": "MIT",
