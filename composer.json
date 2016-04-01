@@ -1,5 +1,5 @@
 {
-  "name": "SerginhoLD/bitrix-boolean-property",
+  "name": "serginhold/bitrix-boolean-property",
   "description": "Boolean property for module \"iblock\"",
   "keywords": ["bitrix", "module", "iblock", "property", "boolean"],
   "type": "bitrix-module",
