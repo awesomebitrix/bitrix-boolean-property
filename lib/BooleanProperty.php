@@ -12,7 +12,7 @@ Loc::loadMessages(__FILE__);
 /**
  * Класс свойства "Да/Нет" для инфоблоков
  * 
- * Class PropertyBoolean
+ * Class BooleanProperty
  * @package SerginhoLD\Bitrix\Iblock\BooleanProperty
  */
 class BooleanProperty
