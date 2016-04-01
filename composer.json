@@ -1,0 +1,24 @@
+{
+  "name": "SerginhoLD/bitrix-boolean-property",
+  "description": "Boolean property for module \"iblock\"",
+  "keywords": ["bitrix", "module", "iblock", "property", "boolean"],
+  "type": "bitrix-module",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/SerginhoLD/bitrix-boolean-property/issues",
+    "source": "https://github.com/SerginhoLD/bitrix-boolean-property"
+  },
+  "authors": [
+    {
+      "name": "Sergey Zubrilin",
+      "homepage": "http://serginhold.ru"
+    }
+  ],
+  "extra": {
+    "installer-name": "serginhold.booleanproperty"
+  },
+  "require": {
+    "php": ">=5.5.0",
+    "composer/installers": "~1"
+  }
+}
