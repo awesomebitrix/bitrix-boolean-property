@@ -1,6 +1,7 @@
 # Boolean property for the module "iblock" (Bitrix)
 
 [![Latest Stable Version](https://poser.pugx.org/serginhold/bitrix-boolean-property/v/stable)](https://packagist.org/packages/serginhold/bitrix-boolean-property) [![Total Downloads](https://poser.pugx.org/serginhold/bitrix-boolean-property/downloads)](https://packagist.org/packages/serginhold/bitrix-boolean-property) [![License](https://poser.pugx.org/serginhold/bitrix-boolean-property/license)](https://packagist.org/packages/serginhold/bitrix-boolean-property)
+
 [Russian README](README.RU.md)
 
 ## Install
