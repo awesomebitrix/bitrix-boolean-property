@@ -14,15 +14,15 @@ class ControlFactory
     /**
      * Create control
      * 
-     * @param $name
+     * @param string $name
      * 
-     * @return object ControlInterface
+     * @return object Control
      */
     public static function create($name)
     {
-        $control = __NAMESPACE__ . '\\Control\\' . ucwords(strtolower($name)) . 'Control';
+        $control = __NAMESPACE__ . '\\Control\\' . ucfirst(strtolower($name)) . 'Control';
         
-        if (!class_exists($control))
+        if (!$name || !class_exists($control))
         {
             return new CheckboxControl();
         }

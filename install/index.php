@@ -1,7 +1,6 @@
 <?php
 defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
-use Bitrix\Main\Application;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ModuleManager;
 use Bitrix\Main\EventManager;
@@ -13,7 +12,7 @@ if (class_exists('serginhold_booleanproperty'))
     return;
 
 /**
- * Модуль добавляющий свойство "Да/Нет" для свойств инфоблоков
+ * Модуль добавляющий свойство "Да/Нет" для инфоблоков
  * 
  * Class serginhold_booleanproperty
  */
@@ -42,11 +41,11 @@ class serginhold_booleanproperty extends \CModule
      */
     public function __construct()
     {
-        $this->MODULE_NAME = Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_MODULE');
+        $this->MODULE_NAME = Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_MODULE_NAME');
         
         include __DIR__ . '/version.php';
         
-        if (!empty($arModuleVersion))
+        if (isset($arModuleVersion['VERSION'], $arModuleVersion['VERSION_DATE']))
         {
             $this->MODULE_VERSION = $arModuleVersion['VERSION'];
             $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
@@ -79,7 +78,9 @@ class serginhold_booleanproperty extends \CModule
     public function InstallEvents()
     {
         $em = EventManager::getInstance();
-        $em->registerEventHandler('iblock', 'OnIBlockPropertyBuildList', $this->MODULE_ID, BooleanProperty::class, 'GetIBlockPropertyDescription');
+        
+        $em->registerEventHandler('iblock', 'OnIBlockPropertyBuildList', 
+            $this->MODULE_ID, BooleanProperty::class, 'GetIBlockPropertyDescription');
         
         return true;
     }
@@ -92,7 +93,9 @@ class serginhold_booleanproperty extends \CModule
     public function UnInstallEvents()
     {
         $em = EventManager::getInstance();
-        $em->unRegisterEventHandler('iblock', 'OnIBlockPropertyBuildList', $this->MODULE_ID, BooleanProperty::class, 'GetIBlockPropertyDescription');
+        
+        $em->unRegisterEventHandler('iblock', 'OnIBlockPropertyBuildList', 
+            $this->MODULE_ID, BooleanProperty::class, 'GetIBlockPropertyDescription');
 
         return true;
     }
