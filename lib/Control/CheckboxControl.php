@@ -1,5 +1,5 @@
 <?php
-namespace SerginhoLD\Bitrix\Iblock\BooleanProperty\Control;
+namespace SerginhoLD\BooleanProperty\Control;
 
 defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
@@ -7,7 +7,7 @@ defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
  * Checkbox
  * 
  * Class CheckboxControl
- * @package SerginhoLD\Bitrix\Iblock\BooleanProperty\Control
+ * @package SerginhoLD\BooleanProperty\Control
  */
 class CheckboxControl extends Control
 {
@@ -17,7 +17,7 @@ class CheckboxControl extends Control
      * 
      * @return string
      */
-    protected function renderControlField($name, $value = null)
+    protected function renderControl($name, $value = null)
     {
         return '<input type="hidden" value="0" name="' . $name . '">
             <input type="checkbox" value="1" name="' . $name . '"' . ($value ? ' checked' : null) . ' id="' . $name . '">';

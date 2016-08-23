@@ -1,5 +1,5 @@
 <?php
-namespace SerginhoLD\Bitrix\Iblock\BooleanProperty\Control;
+namespace SerginhoLD\BooleanProperty\Control;
 
 defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
@@ -7,7 +7,7 @@ use Bitrix\Main\Localization\Loc;
 
 /**
  * Class Control
- * @package SerginhoLD\Bitrix\Iblock\BooleanProperty\Control
+ * @package SerginhoLD\BooleanProperty\Control
  */
 abstract class Control
 {
@@ -29,11 +29,11 @@ abstract class Control
             $arValue['VALUE'] = null;
         }
         
-        $html = $this->renderControlField($arName['VALUE'], $arValue['VALUE']);
+        $html = $this->renderControl($arName['VALUE'], $arValue['VALUE']);
         
         if ($withDescription)
         {
-            $html .= $this->renderDescriptionField($arName['DESCRIPTION'], $arValue['DESCRIPTION']);
+            $html .= $this->renderDescription($arName['DESCRIPTION'], $arValue['DESCRIPTION']);
         }
         
         return $html;
@@ -45,7 +45,7 @@ abstract class Control
      *
      * @return string
      */
-    abstract protected function renderControlField($name, $value = null);
+    abstract protected function renderControl($name, $value = null);
     
     /**
      * @param string $name
@@ -53,9 +53,9 @@ abstract class Control
      *
      * @return string
      */
-    protected function renderDescriptionField($name, $value)
+    protected function renderDescription($name, $value)
     {
-        $placeholder = htmlentities(Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_PLACEHOLDER_DESCRIPTION'), ENT_QUOTES);
+        $placeholder = htmlentities(Loc::getMessage('SERGINHOLD_BOOLEAN_PROPERTY_PLACEHOLDER_DESCRIPTION'), ENT_QUOTES);
         $value = htmlentities($value, ENT_QUOTES);
         
         return '<div style="margin-top: 5px">

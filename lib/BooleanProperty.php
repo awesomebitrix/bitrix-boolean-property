@@ -1,5 +1,5 @@
 <?php
-namespace SerginhoLD\Bitrix\Iblock\BooleanProperty;
+namespace SerginhoLD\BooleanProperty;
 
 defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
@@ -14,7 +14,7 @@ Loc::loadMessages(__FILE__);
  * Значение свойства является числом, возможные значения: null, 0 или 1
  * 
  * Class BooleanProperty
- * @package SerginhoLD\Bitrix\Iblock\BooleanProperty
+ * @package SerginhoLD\BooleanProperty
  * 
  * @link https://dev.1c-bitrix.ru/api_help/iblock/classes/user_properties/index.php
  */
@@ -30,7 +30,7 @@ class BooleanProperty
         return [
             'PROPERTY_TYPE'             => 'N',
             'USER_TYPE'                 => 'boolean',
-            'DESCRIPTION'               => Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_DESCRIPTION'),
+            'DESCRIPTION'               => Loc::getMessage('SERGINHOLD_BOOLEAN_PROPERTY_DESCRIPTION'),
             'ConvertToDB'               => [__CLASS__, 'valueToInt'],
             'ConvertFromDB'             => [__CLASS__, 'valueToInt'],
             'GetPropertyFieldHtml'      => [__CLASS__, 'GetPropertyFieldHtml'],
@@ -43,6 +43,25 @@ class BooleanProperty
             'PrepareSettings'           => [__CLASS__, 'PrepareSettings'],
             'GetSettingsHTML'           => [__CLASS__, 'GetSettingsHTML'],
         ];
+    }
+    
+    /**
+     * Создание элемента для редактирования свойства
+     * 
+     * @param $name
+     * 
+     * @return object
+     */
+    public static function createControl($name)
+    {
+        $control = __NAMESPACE__ . '\\Control\\' . ucfirst(strtolower($name)) . 'Control';
+        
+        if (empty($name) || !class_exists($control))
+        {
+            return new Control\CheckboxControl();
+        }
+        
+        return new $control;
     }
     
     /**
@@ -77,11 +96,11 @@ class BooleanProperty
      */
     protected static function renderValue($value = null)
     {
-        $message = 'SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_ANY';
+        $message = 'SERGINHOLD_BOOLEAN_PROPERTY_ANY';
         
         if (is_numeric($value))
         {
-            $message = $value ? 'SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_YES' : 'SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_NO';
+            $message = $value ? 'SERGINHOLD_BOOLEAN_PROPERTY_YES' : 'SERGINHOLD_BOOLEAN_PROPERTY_NO';
         }
         
         return htmlentities(Loc::getMessage($message), ENT_QUOTES);
@@ -123,7 +142,7 @@ class BooleanProperty
      *
      * @return string
      */
-    protected static function renderEditProperty(array $arName, array $arValue, $arProperty = null)
+    protected static function renderControl(array $arName, array $arValue, $arProperty = null)
     {
         $display = isset($arProperty['USER_TYPE_SETTINGS']['DISPLAY'])
             ? $arProperty['USER_TYPE_SETTINGS']['DISPLAY'] : null;
@@ -131,7 +150,7 @@ class BooleanProperty
         $withDescription = (isset($arProperty['WITH_DESCRIPTION']) && $arProperty['WITH_DESCRIPTION'] === 'Y')
             ? true : false;
         
-        return ControlFactory::create($display)->render($arName, $arValue, $withDescription);
+        return self::createControl($display)->render($arName, $arValue, $withDescription);
     }
 
     /**
@@ -150,7 +169,7 @@ class BooleanProperty
             $arProperty['WITH_DESCRIPTION'] = 'N';
         }
         
-        return self::renderEditProperty($strHTMLControlName, $value, $arProperty);
+        return self::renderControl($strHTMLControlName, $value, $arProperty);
     }
     
     /**
@@ -164,7 +183,7 @@ class BooleanProperty
      */
     public static function GetPropertyFieldHtmlMulty($arProperty, $arValues, $strHTMLControlName)
     {
-        $errorMessage = Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_ERROR_MULTY', [
+        $errorMessage = Loc::getMessage('SERGINHOLD_BOOLEAN_PROPERTY_ERROR_MULTY', [
             '#TYPE#' => $arProperty['USER_TYPE']
         ]);
         
@@ -203,7 +222,7 @@ class BooleanProperty
     {
         $arProperty['WITH_DESCRIPTION'] = 'N';
         
-        return self::renderEditProperty($strHTMLControlName, $value, $arProperty);
+        return self::renderControl($strHTMLControlName, $value, $arProperty);
     }
     
     /**
@@ -273,7 +292,7 @@ class BooleanProperty
             if (empty($controlName)) continue;
     
             $checked = ($display === $controlName) ? 'checked' : null;
-            $name = Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_DISPLAY_' . strtoupper($controlName));
+            $name = Loc::getMessage('SERGINHOLD_BOOLEAN_PROPERTY_DISPLAY_' . strtoupper($controlName));
     
             $listHtml .= '<div>
                 <label>
@@ -284,7 +303,7 @@ class BooleanProperty
         }
         
         return '<tr valign="top">
-            <td>' . htmlentities(Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_DISPLAY'), ENT_QUOTES) . ':</td>
+            <td>' . htmlentities(Loc::getMessage('SERGINHOLD_BOOLEAN_PROPERTY_DISPLAY'), ENT_QUOTES) . ':</td>
             <td>' . $listHtml . '</td>
         </tr>';
     }

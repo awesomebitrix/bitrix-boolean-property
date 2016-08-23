@@ -4,7 +4,7 @@ defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ModuleManager;
 use Bitrix\Main\EventManager;
-use SerginhoLD\Bitrix\Iblock\BooleanProperty\BooleanProperty;
+use SerginhoLD\BooleanProperty\BooleanProperty;
 
 Loc::loadMessages(__FILE__);
 
@@ -41,7 +41,7 @@ class serginhold_booleanproperty extends \CModule
      */
     public function __construct()
     {
-        $this->MODULE_NAME = Loc::getMessage('SERGINHOLD_IBLOCK_BOOLEAN_PROPERTY_MODULE_NAME');
+        $this->MODULE_NAME = Loc::getMessage('SERGINHOLD_BOOLEAN_PROPERTY_MODULE_NAME');
         
         include __DIR__ . '/version.php';
         

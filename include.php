@@ -1,12 +1,10 @@
 <?php
 defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
-use \Bitrix\Main\Loader as Loader;
-
-Loader::registerAutoLoadClasses('serginhold.booleanproperty', [
-    'SerginhoLD\Bitrix\Iblock\BooleanProperty\BooleanProperty'         => 'lib/BooleanProperty.php',
-    'SerginhoLD\Bitrix\Iblock\BooleanProperty\ControlFactory'          => 'lib/ControlFactory.php',
-    'SerginhoLD\Bitrix\Iblock\BooleanProperty\Control\Control'         => 'lib/Control/Control.php',
-    'SerginhoLD\Bitrix\Iblock\BooleanProperty\Control\CheckboxControl' => 'lib/Control/CheckboxControl.php',
-    'SerginhoLD\Bitrix\Iblock\BooleanProperty\Control\SelectControl'   => 'lib/Control/SelectControl.php',
-]);
+/**
+ * Файл подключается при подключении модуля во время выполнения скриптов сайта,
+ * в нем должны находиться включения всех файлов с библиотеками функций и классов модуля.
+ * 
+ * В этом файле так же объявляются используемые модулем константы, если они общие.
+ * Если же константы относятся к какому-либо классу модуля, то они объявляются в самом классе.
+*/
